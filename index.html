@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warisse Otchade | Développeur & Data Enthusiast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a192f',
+                        light: '#e6f1ff',
+                        primary: '#64ffda',
+                        secondary: '#112240',
+                        accent: '#1e90ff',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a192f;
+            color: #e6f1ff;
+            overflow-x: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(100, 255, 218, 0.5);
+            border-radius: 50%;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(100, 255, 218, 0.1), 0 10px 10px -5px rgba(100, 255, 218, 0.04);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #64ffda, #1e90ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #64ffda, #1e90ff);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #64ffda;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-item {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+        
+        input, textarea {
+            background-color: rgba(17, 34, 64, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-secondary bg-opacity-90 backdrop-blur-sm z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-primary text-2xl font-bold">Warisse OTCHADE</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Accueil</a>
+                        <a href="#about" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">À propos</a>
+                        <a href="#skills" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Compétences</a>
+                        <a href="#projects" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Projets</a>
+                        <a href="#contact" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-light hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-secondary pb-3">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-light hover:text-primary">Accueil</a>
+                <a href="#about" class="block px-3 py-2 text-light hover:text-primary">À propos</a>
+                <a href="#skills" class="block px-3 py-2 text-light hover:text-primary">Compétences</a>
+                <a href="#projects" class="block px-3 py-2 text-light hover:text-primary">Projets</a>
+                <a href="#contact" class="block px-3 py-2 text-light hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="particles" id="particles-js"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in" style="animation-delay: 0.2s;">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Warisse Otchade</h1>
+                    <h2 class="text-2xl md:text-3xl mb-8 gradient-text">Développeur & Data Enthusiast</h2>
+                    <p class="text-xl mb-8 text-light">De l'idée au produit intelligent</p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="bg-primary text-dark px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition duration-300">Voir mes projets</a>
+                        <a href="#contact" class="border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:bg-opacity-10 transition duration-300">Me contacter</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center fade-in" style="animation-delay: 0.4s;">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg">
+                            <img src="images/WARISSE.jpeg" alt="Warisse Otchade" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-secondary p-3 rounded-full shadow-xl">
+                            <span class="text-primary text-2xl">👋</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">À propos de moi</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 fade-in" style="animation-delay: 0.2s;">
+                    <p class="text-lg mb-6">Passionné par les technologies émergentes et l'innovation, je mets mes compétences en développement et en data science au service de projets ambitieux.</p>
+                    <p class="text-lg mb-6">Mon objectif : rendre la Data Science plus accessible, même pour ceux qui ne sont pas experts en mathématiques.</p>
+                    <p class="text-lg mb-8">Je crois fermement que la technologie doit être au service de l'humain, et c'est cette conviction qui guide chacun de mes projets.</p>
+                    <a href="#contact" class="inline-flex items-center text-primary group">
+                        <span class="mr-2">Discutons de votre projet</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                    <br>
+                    <a href="documents/CV-Warisse-Otchade.pdf" class="inline-flex items-center text-primary group">
+                        <span class="mr-2">📄 Télécharger mon CV</span>
+                        <i class="fas fa-download group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                <div class="md:w-1/2 fade-in" style="animation-delay: 0.4s;">
+                    <div class="bg-dark p-8 rounded-lg shadow-xl">
+                        <h3 class="text-xl font-bold mb-6 text-primary">Mon parcours</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">CEP 2014</h4>
+                                    <p class="text-light text-opacity-80">Certificat d'Études Primaires</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">BEPC 2018</h4>
+                                    <p class="text-light text-opacity-80">Brevet d'Études du Premier Cycle</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">BAC 2022</h4>
+                                    <p class="text-light text-opacity-80">Baccalauréat Scientifique</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Formations IA & Data Science</h4>
+                                    <p class="text-light text-opacity-80">EEIA 2024 et Club d'IA du CAEB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Licence Professionnelle en 2025</h4>
+                                    <p class="text-light text-opacity-80">Systèmes Informatiques et Logiciels</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">Mes compétences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 fade-in" style="animation-delay: 0.2s;">
+                <!-- Langages -->
+                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fas fa-code text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Langages</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-python text-primary mr-2"></i>
+                            <span>Python</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-database text-primary mr-2"></i>
+                            <span>SQL</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-mobile-alt text-primary mr-2"></i>
+                            <span>Flutter</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-html5 text-primary mr-2"></i>
+                            <span>HTML/CSS</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-js text-primary mr-2"></i>
+                            <span>JavaScript</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-java text-primary mr-2"></i>
+                            <span>Java</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-copyright text-primary mr-2"></i>
+                            <span>C/C++</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <!-- IA & Data Science -->
+                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fas fa-brain text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">IA & Data Science</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-robot text-primary mr-2"></i>
+                            <span>Machine Learning</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-chart-line text-primary mr-2"></i>
+                            <span>Exploratory Data Analysis</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-cogs text-primary mr-2"></i>
+                            <span>Entraînement de modèles</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-rocket text-primary mr-2"></i>
+                            <span>Déploiement de modèles</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-project-diagram text-primary mr-2"></i>
+                            <span>TensorFlow Lite</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-eye text-primary mr-2"></i>
+                            <span>Vision par ordinateur</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Développement d'applications -->
+                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fas fa-laptop-code text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Développement</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-mobile-alt text-primary mr-2"></i>
+                            <span>Flutter</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-react text-primary mr-2"></i>
+                            <span>React</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-node-js text-primary mr-2"></i>
+                            <span>Node.js</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-server text-primary mr-2"></i>
+                            <span>Express</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-database text-primary mr-2"></i>
+                            <span>MySQL</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-cloud text-primary mr-2"></i>
+                            <span>API REST</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Outils -->
+                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                            <i class="fas fa-tools text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Outils</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-windows text-primary mr-2"></i>
+                            <span>Windows</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-shield-alt text-primary mr-2"></i>
+                            <span>Kali Linux</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-code text-primary mr-2"></i>
+                            <span>Visual Studio Code</span>
+                        </li>
+                        <li class="skill-item flex items-center">
+                            <i class="fab fa-github text-primary mr-2"></i>
+                            <span>GitHub</span>
+                        </li>
+                        
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-terminal text-primary mr-2"></i>
+                            <span>Bash Scripting</span>
+                        </li>
+                        
+                        <li class="skill-item flex items-center">
+                            <i class="fas fa-network-wired text-primary mr-2"></i>
+                            <span>Réseaux</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">Mes projets</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in" style="animation-delay: 0.2s;">
+                <!-- Projet 1 -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/app_mobile.png" alt="Détection maladies des plantes" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">App mobile - Détection maladies des plantes</h3>
+                        <p class="text-light text-opacity-80 mb-4">Application mobile utilisant TensorFlow Lite pour identifier 38 classes de maladies végétales.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">TFLite</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Flutter</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Python</span>
+                        </div>
+                        <a href="https://github.com/WarisseCode/Plante-AI.git" class="text-primary hover:underline inline-flex items-center">
+                            <span>Voir sur GitHub</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/reconnaissance.png" alt="Comptage automatique de trafic" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Comptage automatique de trafic</h3>
+                        <p class="text-light text-opacity-80 mb-4">Solution de vision par ordinateur pour analyser et compter le trafic routier en temps réel.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">OpenCV</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Python</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">YOLO</span>
+                        </div>
+                        <a href="#" class="text-primary hover:underline inline-flex items-center">
+                            <span>Voir la démo</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/pneumonie.png" alt="Détection maladies des plantes" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Systèmes de détection de la Pneumonie avec Python</h3>
+                        <p class="text-light text-opacity-80 mb-4">Projet d'apprentissage automatique sur la détection de la pneumonie avec le langage de programmation Python.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">TFLite</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Flutter</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Python</span>
+                        </div>
+                        <a href="https://github.com/WarisseCode/Pneumonia-detection-system-with-python.git" class="text-primary hover:underline inline-flex items-center">
+                            <span>Voir sur GitHub</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Outil Bash" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Outil Bash - Désauthentification Wi-Fi</h3>
+                        <p class="text-light text-opacity-80 mb-4">Script Bash avec menu interactif pour tester la sécurité des réseaux Wi-Fi.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Bash</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Kali Linux</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Réseaux</span>
+                        </div>
+                        <a href="#" class="text-primary hover:underline inline-flex items-center">
+                            <span>Voir le code</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projet 5 -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/page_facebook.png" alt="Page Facebook DataFlow" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Page Facebook DataFlow</h3>
+                        <p class="text-light text-opacity-80 mb-4">Plateforme de vulgarisation des concepts de Data Science pour un public non technique.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Éducation</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Data Science</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Vulgarisation</span>
+                        </div>
+                        <a href="https://www.facebook.com/profile.php?id=61564428128936&sk=about" class="text-primary hover:underline inline-flex items-center">
+                            <span>Visiter la page</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projets en cours -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover border-2 border-primary border-opacity-50">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Application PME" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-primary text-dark text-xs px-2 py-1 rounded mr-2">EN COURS</span>
+                            <h3 class="text-xl font-bold">Application web/mobile pour PME</h3>
+                        </div>
+                        <p class="text-light text-opacity-80 mb-4">Solution complète de suivi et d'optimisation des dépenses avec intégration d'IA prédictive.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Flutter</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Node.js</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Machine Learning</span>
+                        </div>
+                        <p class="text-primary text-sm">Disponible prochainement</p>
+                    </div>
+                </div>
+                
+                <!-- Projets en cours -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-xl card-hover border-2 border-primary border-opacity-50">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="eBook Python" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-primary text-dark text-xs px-2 py-1 rounded mr-2">EN COURS</span>
+                            <h3 class="text-xl font-bold">eBook "Python pour la Data Science"</h3>
+                        </div>
+                        <p class="text-light text-opacity-80 mb-4">Guide pratique pour maîtriser Python et ses librairies dédiées à la Data Science.</p>
+                        <div class="mb-4">
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Python</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Pandas</span>
+                            <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">NumPy</span>
+                        </div>
+                        <p class="text-primary text-sm">Publication prévue en 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Preuve de compétences -->
+ <section id="certifications" class="py-20 bg-secondary">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">Preuves de compétences</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Certification 1 -->
+      <div class="bg-dark p-6 rounded-lg shadow-lg card-hover">
+        <h3 class="text-xl font-bold mb-2 text-primary">Certificat EEIA 2024</h3>
+        <p class="text-light text-opacity-80 mb-4">Formation en Intelligence Artificielle et Data Science.</p>
+        <a href="documents/Attestation_EEIA.pdf" target="_blank" class="text-primary hover:underline">Voir le certificat</a>
+      </div>
+      
+      <!-- Certification 2 -->
+      <div class="bg-dark p-6 rounded-lg shadow-lg card-hover">
+        <h3 class="text-xl font-bold mb-2 text-primary">Membre du Club IA CAEB</h3>
+        <p class="text-light text-opacity-80 mb-4">Participation active aux projets IA et formations au CAEB de Porto-Novo.</p>
+      </div>
+
+      <!-- Certification 3 -->
+      <div class="bg-dark p-6 rounded-lg shadow-lg card-hover">
+        <h3 class="text-xl font-bold mb-2 text-primary">Certificat Machine Learning</h3>
+        <p class="text-light text-opacity-80 mb-4">Certification en apprentissage automatique (en ligne).</p>
+        <a href="certificat-ml.pdf" target="_blank" class="text-primary hover:underline">Voir le certificat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">Contactez-moi</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12 fade-in" style="animation-delay: 0.2s;">
+                <div class="md:w-1/2">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">Votre nom</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1">Votre email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium mb-1">Sujet</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-dark px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition duration-300">Envoyer le message</button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-secondary p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-xl font-bold mb-6 text-primary">Autres moyens de contact</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">WhatsApp</h4>
+                                    <a href="https://wa.me/+22951173497" target="_blank" class="text-light hover:text-primary transition duration-300">+229 51 17 34 97</a>
+                                </div>
+
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <a href="mailto:warissecodeman@gmail.com" class="text-light hover:text-primary transition duration-300">warissecodeman@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/warisse-otchade" target="_blank" class="text-light hover:text-primary transition duration-300">linkedin.com/in/warisse-otchade</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">GitHub</h4>
+                                    <a href="https://github.com/WarisseCode" target="_blank" class="text-light hover:text-primary transition duration-300">github.com/WarisseCode</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-facebook"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Facebook</h4>
+                                    <a href="https://www.facebook.com/profile.php?id=61564428128936&sk=about" target="_blank" class="text-light hover:text-primary transition duration-300">facebook.com/dataflow</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12">
+                            <h3 class="text-xl font-bold mb-4 text-primary">Disponibilité</h3>
+                            <p class="mb-4">Je suis actuellement ouvert à des opportunités de collaboration, de freelance ou d'emploi dans les domaines du développement et de la data science.</p>
+                            <p>N'hésitez pas à me contacter pour discuter de votre projet ou pour toute question.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-primary text-2xl font-bold">Warisse OTCHADE</span>
+                    <p class="text-light text-opacity-80 mt-2">Développeur & Data Enthusiast</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://wa.me/+22951173497" class="text-light hover:text-primary transition duration-300">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/warisse-otchade" class="text-light hover:text-primary transition duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/WarisseCode" class="text-light hover:text-primary transition duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61564428128936&sk=about" class="text-light hover:text-primary transition duration-300">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="mailto:warisse@example.com" class="text-light hover:text-primary transition duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-light border-opacity-20 text-center text-light text-opacity-70">
+                <p>&copy; 2023 Warisse Otchade. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Create particles effect
+        function createParticles() {
+            const container = document.getElementById('particles-js');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1px and 3px
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add fade-in class to elements when they come into view
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
