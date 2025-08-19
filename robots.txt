@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://warisse-otchade.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin
+Disallow: /api/
+
+# Allow important files
+Allow: /images/
+Allow: /documents/
+Allow: /*.css
+Allow: /*.js

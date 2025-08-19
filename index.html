@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warisse Otchade | Développeur & Data Enthusiast</title>
+    <title>Warisse Otchade | Développeur & Data Enthusiast - Portfolio Professionnel</title>
+    <meta name="description" content="Portfolio de Warisse Otchade, développeur et expert en Data Science. Spécialisé en IA, Machine Learning, développement d'applications mobiles avec Flutter et Python.">
+    <meta name="keywords" content="Warisse Otchade, développeur, data science, intelligence artificielle, machine learning, flutter, python, portfolio, béninois">
+    <meta name="author" content="Warisse Otchade">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://warisse-otchade.com/">
+    <meta property="og:title" content="Warisse Otchade | Développeur & Data Enthusiast">
+    <meta property="og:description" content="Portfolio professionnel de Warisse Otchade - Expert en IA et développement d'applications">
+    <meta property="og:image" content="images/WARISSE.jpeg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://warisse-otchade.com/">
+    <meta property="twitter:title" content="Warisse Otchade | Développeur & Data Enthusiast">
+    <meta property="twitter:description" content="Portfolio professionnel de Warisse Otchade - Expert en IA et développement d'applications">
+    <meta property="twitter:image" content="images/WARISSE.jpeg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="images/WARISSE.jpeg">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="images/WARISSE.jpeg" as="image">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -134,6 +160,150 @@
         .fade-in {
             animation: fadeIn 0.8s ease forwards;
         }
+        
+        /* Typing animation */
+        .typing-animation {
+            overflow: hidden;
+            border-right: 2px solid #64ffda;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #64ffda }
+        }
+        
+        /* Enhanced particle effects */
+        .particle-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.3), transparent);
+            height: 1px;
+            animation: moveLine 8s linear infinite;
+        }
+        
+        @keyframes moveLine {
+            0% { transform: translateX(-100vw) }
+            100% { transform: translateX(100vw) }
+        }
+        
+        /* Glowing effects */
+        .glow-on-hover {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-on-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-on-hover:hover::before {
+            left: 100%;
+        }
+        
+        /* Skill progress bars */
+        .skill-progress {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(100, 255, 218, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #1e90ff);
+            border-radius: 2px;
+            animation: fillProgress 2s ease-out forwards;
+            transform: translateX(-100%);
+            position: relative;
+        }
+        
+        .skill-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes fillProgress {
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            animation: floatUpDown 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Matrix rain effect */
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: rgba(100, 255, 218, 0.3);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: matrixFall 10s linear infinite;
+        }
+        
+        @keyframes matrixFall {
+            0% { 
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -150,7 +320,11 @@
                         <a href="#about" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">À propos</a>
                         <a href="#skills" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Compétences</a>
                         <a href="#projects" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Projets</a>
+                        <a href="#blog" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Blog</a>
                         <a href="#contact" class="nav-link text-light hover:text-primary px-3 py-2 text-sm font-medium">Contact</a>
+                        <button id="theme-toggle" class="text-light hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300">
+                            <i class="fas fa-sun" id="theme-icon"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -169,6 +343,7 @@
                 <a href="#about" class="block px-3 py-2 text-light hover:text-primary">À propos</a>
                 <a href="#skills" class="block px-3 py-2 text-light hover:text-primary">Compétences</a>
                 <a href="#projects" class="block px-3 py-2 text-light hover:text-primary">Projets</a>
+                <a href="#blog" class="block px-3 py-2 text-light hover:text-primary">Blog</a>
                 <a href="#contact" class="block px-3 py-2 text-light hover:text-primary">Contact</a>
             </div>
         </div>
@@ -177,11 +352,13 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div class="particles" id="particles-js"></div>
+        <div class="matrix-rain" id="matrix-rain"></div>
+        <div class="particle-network" id="particle-network"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 fade-in" style="animation-delay: 0.2s;">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Warisse Otchade</h1>
-                    <h2 class="text-2xl md:text-3xl mb-8 gradient-text">Développeur & Data Enthusiast</h2>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 floating-element">Warisse Otchade</h1>
+                    <h2 class="text-2xl md:text-3xl mb-8 gradient-text typing-animation">Développeur & Data Enthusiast</h2>
                     <p class="text-xl mb-8 text-light">De l'idée au produit intelligent</p>
                     <div class="flex space-x-4">
                         <a href="#projects" class="bg-primary text-dark px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition duration-300">Voir mes projets</a>
@@ -284,7 +461,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 fade-in" style="animation-delay: 0.2s;">
                 <!-- Langages -->
-                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover">
+                <div class="bg-secondary rounded-lg p-6 shadow-lg card-hover glow-on-hover">
                     <div class="flex items-center mb-4">
                         <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
                             <i class="fas fa-code text-primary text-xl"></i>
@@ -292,33 +469,68 @@
                         <h3 class="text-xl font-bold">Langages</h3>
                     </div>
                     <ul class="space-y-3">
-                        <li class="skill-item flex items-center">
-                            <i class="fab fa-python text-primary mr-2"></i>
-                            <span>Python</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fab fa-python text-primary mr-2"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.2s; width: 95%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fas fa-database text-primary mr-2"></i>
-                            <span>SQL</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-primary mr-2"></i>
+                                <span>SQL</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.3s; width: 85%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fas fa-mobile-alt text-primary mr-2"></i>
-                            <span>Flutter</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-mobile-alt text-primary mr-2"></i>
+                                <span>Flutter</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.4s; width: 90%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fab fa-html5 text-primary mr-2"></i>
-                            <span>HTML/CSS</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fab fa-html5 text-primary mr-2"></i>
+                                <span>HTML/CSS</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.5s; width: 92%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fab fa-js text-primary mr-2"></i>
-                            <span>JavaScript</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fab fa-js text-primary mr-2"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.6s; width: 88%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fab fa-java text-primary mr-2"></i>
-                            <span>Java</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fab fa-java text-primary mr-2"></i>
+                                <span>Java</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.7s; width: 80%;"></div>
+                            </div>
                         </li>
-                        <li class="skill-item flex items-center">
-                            <i class="fas fa-copyright text-primary mr-2"></i>
-                            <span>C/C++</span>
+                        <li class="skill-item flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-copyright text-primary mr-2"></i>
+                                <span>C/C++</span>
+                            </div>
+                            <div class="skill-progress w-20">
+                                <div class="skill-progress-bar" style="animation-delay: 0.8s; width: 75%;"></div>
+                            </div>
                         </li>
                         
                     </ul>
@@ -450,7 +662,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">App mobile - Détection maladies des plantes</h3>
-                        <p class="text-light text-opacity-80 mb-4">Application mobile utilisant TensorFlow Lite pour identifier 38 classes de maladies végétales.</p>
+                        <p class="text-light text-opacity-80 mb-4">Application mobile intelligente utilisant TensorFlow Lite pour identifier automatiquement 39 classes de maladies végétales avec une précision de 95%.</p>
                         <div class="mb-4">
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">TFLite</span>
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Flutter</span>
@@ -470,7 +682,7 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Comptage automatique de trafic</h3>
-                        <p class="text-light text-opacity-80 mb-4">Solution de vision par ordinateur pour analyser et compter le trafic routier en temps réel.</p>
+                        <p class="text-light text-opacity-80 mb-4">Système intelligent de vision par ordinateur utilisant YOLO pour détecter, suivre et compter automatiquement les véhicules en temps réel avec analyse statistique.</p>
                         <div class="mb-4">
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">OpenCV</span>
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Python</span>
@@ -510,13 +722,13 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Outil Bash - Désauthentification Wi-Fi</h3>
-                        <p class="text-light text-opacity-80 mb-4">Script Bash avec menu interactif pour tester la sécurité des réseaux Wi-Fi.</p>
+                        <p class="text-light text-opacity-80 mb-4">Outil de sécurité réseau avec interface interactive permettant l'audit et les tests de pénétration Wi-Fi, incluant logging automatique et rapports détaillés.</p>
                         <div class="mb-4">
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Bash</span>
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Kali Linux</span>
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">Réseaux</span>
                         </div>
-                        <a href="#" class="text-primary hover:underline inline-flex items-center">
+                        <a href="https://github.com/WarisseCode/wifi-deauth.git" class="text-primary hover:underline inline-flex items-center">
                             <span>Voir le code</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
@@ -579,24 +791,26 @@
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded mr-2">Pandas</span>
                             <span class="inline-block bg-primary bg-opacity-20 text-primary text-xs px-2 py-1 rounded">NumPy</span>
                         </div>
-                        <p class="text-primary text-sm">Publication prévue en 2024</p>
+                        <p class="text-primary text-sm">Publication prévue en 2025</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- Preuve de compétences -->
+
+
+<!-- Preuves de compétences -->
  <section id="certifications" class="py-20 bg-secondary">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="section-title text-3xl font-bold mb-16 text-center fade-in">Preuves de compétences</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Certification 1 -->
+      <!-- CV Download -->
       <div class="bg-dark p-6 rounded-lg shadow-lg card-hover">
-        <h3 class="text-xl font-bold mb-2 text-primary">Certificat EEIA 2024</h3>
-        <p class="text-light text-opacity-80 mb-4">Formation en Intelligence Artificielle et Data Science.</p>
-        <a href="documents/Attestation_EEIA.pdf" target="_blank" class="text-primary hover:underline">Voir le certificat</a>
+        <h3 class="text-xl font-bold mb-2 text-primary">Consultez mon CV</h3>
+        <p class="text-light text-opacity-80 mb-4">Consultez mon parcours complet et mes compétences détaillées.</p>
+        <a href="documents/CV-Warisse-Otchade.pdf" target="_blank" class="text-primary hover:underline">Voir mon CV</a>
       </div>
       
       <!-- Certification 2 -->
@@ -607,9 +821,9 @@
 
       <!-- Certification 3 -->
       <div class="bg-dark p-6 rounded-lg shadow-lg card-hover">
-        <h3 class="text-xl font-bold mb-2 text-primary">Certificat Machine Learning</h3>
-        <p class="text-light text-opacity-80 mb-4">Certification en apprentissage automatique (en ligne).</p>
-        <a href="certificat-ml.pdf" target="_blank" class="text-primary hover:underline">Voir le certificat</a>
+        <h3 class="text-xl font-bold mb-2 text-primary">Certificat de Participation à l'EEIA </h3>
+        <p class="text-light text-opacity-80 mb-4">Certification en apprentissage automatique et initiation à l'IA de l'école d'Eté sur l'Intelligence Artificielle </p>
+        <a href="documents/Attestation_EEIA.pdf" target="_blank" class="text-primary hover:underline">Voir le certificat</a>
       </div>
     </div>
   </div>
@@ -623,24 +837,28 @@
             
             <div class="flex flex-col md:flex-row gap-12 fade-in" style="animation-delay: 0.2s;">
                 <div class="md:w-1/2">
-                    <form class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
+                        <div id="form-message" class="hidden p-4 rounded-md mb-4"></div>
                         <div>
                             <label for="name" class="block text-sm font-medium mb-1">Votre nom</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium mb-1">Votre email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
                         </div>
                         <div>
                             <label for="subject" class="block text-sm font-medium mb-1">Sujet</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary">
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium mb-1">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary"></textarea>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-primary text-dark px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition duration-300">Envoyer le message</button>
+                        <button type="submit" id="submit-btn" class="w-full bg-primary text-dark px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition duration-300">
+                            <span id="submit-text">Envoyer le message</span>
+                            <i id="submit-spinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                        </button>
                     </form>
                 </div>
                 
@@ -697,6 +915,23 @@
                         </div>
                         
                         <div class="mt-12">
+                            <h3 class="text-xl font-bold mb-4 text-primary">Newsletter</h3>
+                            <p class="mb-4">Restez informé de mes derniers projets et articles sur la Data Science.</p>
+                            <form id="newsletter-form" class="space-y-4">
+                                <div id="newsletter-message" class="hidden p-3 rounded-md text-sm"></div>
+                                <div class="flex gap-2">
+                                    <input type="email" id="newsletter-email" name="email" placeholder="Votre email" required 
+                                           class="flex-1 px-3 py-2 rounded-md border border-light border-opacity-20 focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                                    <button type="submit" id="newsletter-btn" class="bg-primary text-dark px-4 py-2 rounded-md font-medium hover:bg-opacity-90 transition duration-300 text-sm">
+                                        <span id="newsletter-text">S'abonner</span>
+                                        <i id="newsletter-spinner" class="fas fa-spinner fa-spin ml-1 hidden"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-light text-opacity-60">Pas de spam, désinscription facile à tout moment.</p>
+                            </form>
+                        </div>
+                        
+                        <div class="mt-8">
                             <h3 class="text-xl font-bold mb-4 text-primary">Disponibilité</h3>
                             <p class="mb-4">Je suis actuellement ouvert à des opportunités de collaboration, de freelance ou d'emploi dans les domaines du développement et de la data science.</p>
                             <p>N'hésitez pas à me contacter pour discuter de votre projet ou pour toute question.</p>
@@ -728,13 +963,13 @@
                     <a href="https://www.facebook.com/profile.php?id=61564428128936&sk=about" class="text-light hover:text-primary transition duration-300">
                         <i class="fab fa-facebook text-xl"></i>
                     </a>
-                    <a href="mailto:warisse@example.com" class="text-light hover:text-primary transition duration-300">
+                    <a href="mailto:warissecodeman@gmail.com" class="text-light hover:text-primary transition duration-300">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-light border-opacity-20 text-center text-light text-opacity-70">
-                <p>&copy; 2023 Warisse Otchade. Tous droits réservés.</p>
+                <p>&copy; 2024 Warisse Otchade. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -786,9 +1021,43 @@
             }
         }
         
+        // Create matrix rain effect
+        function createMatrixRain() {
+            const container = document.getElementById('matrix-rain');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const char = document.createElement('div');
+                char.classList.add('matrix-char');
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = `${i * 20}px`;
+                char.style.animationDelay = `${Math.random() * 10}s`;
+                char.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                container.appendChild(char);
+            }
+        }
+        
+        // Create particle network lines
+        function createParticleNetwork() {
+            const container = document.getElementById('particle-network');
+            const lineCount = 5;
+            
+            for (let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.classList.add('particle-line');
+                line.style.top = `${Math.random() * 100}%`;
+                line.style.width = `${Math.random() * 200 + 100}px`;
+                line.style.animationDelay = `${Math.random() * 8}s`;
+                container.appendChild(line);
+            }
+        }
+
         // Initialize particles when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
+            createMatrixRain();
+            createParticleNetwork();
             
             // Add fade-in class to elements when they come into view
             const fadeElements = document.querySelectorAll('.fade-in');
@@ -805,6 +1074,163 @@
             fadeElements.forEach(el => {
                 observer.observe(el);
             });
+            
+            // Typing animation restart
+            setTimeout(() => {
+                const typingElement = document.querySelector('.typing-animation');
+                if (typingElement) {
+                    typingElement.style.animation = 'none';
+                    setTimeout(() => {
+                        typingElement.style.animation = 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite';
+                    }, 100);
+                }
+            }, 4000);
+        });
+
+        // Gestion du formulaire de newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const newsletterBtn = document.getElementById('newsletter-btn');
+            const newsletterText = document.getElementById('newsletter-text');
+            const newsletterSpinner = document.getElementById('newsletter-spinner');
+            const newsletterMessage = document.getElementById('newsletter-message');
+            const emailInput = document.getElementById('newsletter-email');
+            
+            // Désactiver le bouton et afficher le spinner
+            newsletterBtn.disabled = true;
+            newsletterText.textContent = 'Inscription...';
+            newsletterSpinner.classList.remove('hidden');
+            newsletterMessage.classList.add('hidden');
+            
+            const email = emailInput.value;
+            
+            try {
+                const response = await fetch('/api/newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Succès
+                    newsletterMessage.className = 'p-3 rounded-md text-sm bg-green-500 bg-opacity-20 text-green-300 border border-green-500 border-opacity-30';
+                    newsletterMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>${result.message}</span>
+                        </div>
+                    `;
+                    newsletterMessage.classList.remove('hidden');
+                    emailInput.value = '';
+                } else {
+                    // Erreur
+                    newsletterMessage.className = 'p-3 rounded-md text-sm bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30';
+                    newsletterMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            <span>${result.message || 'Une erreur est survenue'}</span>
+                        </div>
+                    `;
+                    newsletterMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'inscription:', error);
+                newsletterMessage.className = 'p-3 rounded-md text-sm bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30';
+                newsletterMessage.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <span>Erreur de connexion. Veuillez réessayer.</span>
+                    </div>
+                `;
+                newsletterMessage.classList.remove('hidden');
+            } finally {
+                // Réactiver le bouton
+                newsletterBtn.disabled = false;
+                newsletterText.textContent = 'S\'abonner';
+                newsletterSpinner.classList.add('hidden');
+            }
+        });
+
+        // Gestion du formulaire de contact
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitSpinner = document.getElementById('submit-spinner');
+            const formMessage = document.getElementById('form-message');
+            
+            // Désactiver le bouton et afficher le spinner
+            submitBtn.disabled = true;
+            submitText.textContent = 'Envoi en cours...';
+            submitSpinner.classList.remove('hidden');
+            formMessage.classList.add('hidden');
+            
+            // Récupérer les données du formulaire
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Succès
+                    formMessage.className = 'p-4 rounded-md mb-4 bg-green-500 bg-opacity-20 text-green-300 border border-green-500 border-opacity-30';
+                    formMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>${result.message}</span>
+                        </div>
+                    `;
+                    formMessage.classList.remove('hidden');
+                    
+                    // Réinitialiser le formulaire
+                    this.reset();
+                } else {
+                    // Erreur
+                    formMessage.className = 'p-4 rounded-md mb-4 bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30';
+                    formMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            <span>${result.message || 'Une erreur est survenue'}</span>
+                        </div>
+                    `;
+                    formMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi:', error);
+                formMessage.className = 'p-4 rounded-md mb-4 bg-red-500 bg-opacity-20 text-red-300 border border-red-500 border-opacity-30';
+                formMessage.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <span>Erreur de connexion. Veuillez réessayer.</span>
+                    </div>
+                `;
+                formMessage.classList.remove('hidden');
+            } finally {
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitText.textContent = 'Envoyer le message';
+                submitSpinner.classList.add('hidden');
+            }
         });
     </script>
 </body>
